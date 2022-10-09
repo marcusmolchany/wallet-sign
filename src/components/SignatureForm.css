@@ -1,8 +1,8 @@
 .signatureForm {
   max-width: 800px;
   min-height: calc(
-    100vh - (2 * 1rem) - 40px - (2 * 36px)
-  ); /* 2rem padding top bottom, 40px header, 72px footer */
+    100vh - (2 * 1rem) - 40px - (2 * 36px) - 4rem
+  ); /* 2rem padding top bottom, 40px header, 72px + 4rem footer */
   width: 100%;
   margin: 0 auto;
 }
