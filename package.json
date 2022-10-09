@@ -2,6 +2,10 @@
   "name": "wallet-sign",
   "version": "1.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcusmolchany/wallet-sign"
+  },
   "homepage": "https://marcusmolchany.github.io/wallet-sign",
   "dependencies": {
     "@rainbow-me/rainbowkit": "^0.7.1",
