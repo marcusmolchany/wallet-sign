@@ -99,7 +99,9 @@ export function SignatureForm() {
       <h3>Message to sign</h3>
       <code>{messageToSign}</code>
       <div className="signatureForm_buttonGroup">
-        <button onClick={onResetClick}>Reset</button>
+        <button disabled={!signedMessage} onClick={onResetClick}>
+          Reset
+        </button>
         <button disabled={!isAddressConnected} onClick={onSignClick}>
           Sign
         </button>
