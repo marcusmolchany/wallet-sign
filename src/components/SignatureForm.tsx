@@ -6,6 +6,23 @@ import { EmailButton } from "./EmailButton";
 import "./SignatureForm.css";
 import { TweetButton } from "./TweetButton";
 
+const getRandomName = (): string => {
+  const names = [
+    "Vitalik Buterin",
+    "Grace Hopper",
+    "Alan Turing",
+    "Kanye West",
+    "Elon Musk",
+    "Barak Obama",
+    "Justin Bieber",
+    "Katy Perry",
+    "Rihanna",
+  ];
+  const randomIndex = Math.floor(Math.random() * names.length);
+  return names[randomIndex];
+};
+const RANDOM_NAME = getRandomName();
+
 const getPremessage = ({
   address,
   name,
@@ -93,7 +110,7 @@ export function SignatureForm() {
         className="signatureForm_input"
         disabled={!isAddressConnected}
         type="text"
-        placeholder="Vitalik Buterin"
+        placeholder={RANDOM_NAME}
         onChange={onNameChange}
       />
       <h3>Message</h3>
