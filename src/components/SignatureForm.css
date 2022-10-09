@@ -1,0 +1,22 @@
+.signatureForm {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.signatureForm_textarea {
+  min-width: 300px;
+  width: 100%;
+}
+
+.signatureForm_input,
+.signatureForm_textarea {
+  font-size: 1rem;
+}
+
+.signatureForm_buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
