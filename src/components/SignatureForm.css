@@ -31,7 +31,7 @@
 }
 
 .signatureForm_code {
-  word-break: break-word;
+  word-break: break-all;
 }
 
 .signatureForm_code,
