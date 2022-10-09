@@ -103,7 +103,9 @@ export function SignatureForm() {
         value={message}
       ></textarea>
       <h3>Message to sign</h3>
-      <code>{messageToSign}</code>
+      <div className="signatureForm_code">
+        <code>{messageToSign}</code>
+      </div>
       <div className="signatureForm_buttonGroup flexEnd">
         <button disabled={!signedMessage} onClick={onResetClick}>
           Reset
