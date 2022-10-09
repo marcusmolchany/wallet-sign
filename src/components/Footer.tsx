@@ -12,7 +12,12 @@ export function Footer(): ReactElement {
         <SafeExternalLink href={homepage}>Github</SafeExternalLink>
       </div>
       <div>v{version}</div>
-      <div>Made by molchanimal.eth</div>
+      <div>
+        Made by{" "}
+        <SafeExternalLink href="https://twitter.com/marcusmolch">
+          molchanimal.eth
+        </SafeExternalLink>
+      </div>
     </footer>
   );
 }
