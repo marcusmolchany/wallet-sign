@@ -1,9 +1,10 @@
 .signatureForm {
   max-width: 800px;
-  min-height: calc(100vh - 72px - 88px); /* 72px header 44 px footer */
+  min-height: calc(
+    100vh - (2 * 1rem) - 40px - (2 * 36px)
+  ); /* 2rem padding top bottom, 40px header, 72px footer */
   width: 100%;
   margin: 0 auto;
-  padding: 16px;
 }
 
 .signatureForm_textarea {

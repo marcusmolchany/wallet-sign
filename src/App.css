@@ -1,6 +1,3 @@
-header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+.app_main {
+  padding: 1.5rem;
 }

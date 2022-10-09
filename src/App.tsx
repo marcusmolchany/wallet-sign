@@ -9,7 +9,7 @@ window.Buffer = window.Buffer || require("buffer").Buffer;
 function App() {
   return (
     <Web3Container>
-      <main>
+      <main className="app_main">
         <Header />
         <SignatureForm />
         <Footer />
