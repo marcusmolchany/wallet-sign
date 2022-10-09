@@ -4,6 +4,12 @@ Easily sign any message using your Ethereum wallet
 
 Use the app here: https://marcusmolchany.github.io/wallet-sign
 
+## Depolyment
+
+### `yarn deploy`
+
+Deploys the site to github pages using the [`gh-pages`](https://github.com/tschaub/gh-pages) package.
+
 ## Development
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
