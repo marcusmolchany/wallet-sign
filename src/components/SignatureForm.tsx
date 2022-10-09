@@ -21,7 +21,7 @@ const getPremessage = ({
 };
 
 const INITIAL_MESSAGE =
-  "here by decree that this message has been signed by me.\n\nSigned using Wallet Sign";
+  "hereby decree that this message has been signed by me.\n\nSigned using Wallet Sign";
 
 export function SignatureForm() {
   const { address } = useAccount();
