@@ -112,6 +112,12 @@ export function SignatureForm() {
           Sign
         </button>
       </div>
+      <p>
+        ℹ️ Wallet Sign <i>only</i> uses the <code>personal_sign</code> method in
+        your wallet and does not require a blockchain transaction. Wallet Sign
+        will never ask you to sign a transaction that requries using gas, or
+        sending ETH, ERC-20 tokens, NFTs, or any other crypto-asset.
+      </p>
       {signedMessage ? (
         <div>
           <hr className="signatureForm_hr" />
