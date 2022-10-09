@@ -5,7 +5,7 @@ export function Header() {
   return (
     <header className="header">
       <h2 className="header_h2">✍️ Wallet Sign</h2>
-      <ConnectButton />
+      <ConnectButton chainStatus="none" />
     </header>
   );
 }
