@@ -3,13 +3,13 @@ import packageJson from "../../package.json";
 import { SafeExternalLink } from "./SafeExternalLink";
 import "./Footer.css";
 
-const { homepage, version } = packageJson;
+const { repository, version } = packageJson;
 
 export function Footer(): ReactElement {
   return (
     <footer className="footer">
       <div>
-        <SafeExternalLink href={homepage}>Github</SafeExternalLink>
+        <SafeExternalLink href={repository.url}>Github</SafeExternalLink>
       </div>
       <div>v{version}</div>
       <div>
