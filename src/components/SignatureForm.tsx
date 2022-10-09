@@ -76,7 +76,7 @@ export function SignatureForm() {
 
   const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const value: string = e.target.value;
-    setMessage(value.trim());
+    setMessage(value.trimStart());
   };
 
   const onResetClick = () => {
