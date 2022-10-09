@@ -155,7 +155,7 @@ export function SignatureForm() {
             <h3>Signed message:</h3>
             <p>
               ℹ️ This is your wallet’s signature of the original message. This
-              proves that you signed the original message
+              proves that you signed the original message.
             </p>
             <div className="signatureForm_code">
               <code>{signedMessage}</code>
