@@ -120,6 +120,9 @@ export function SignatureForm() {
             <div className="signatureForm_code">
               <code>{messageThatWasSigned}</code>
             </div>
+            <div className="signatureForm_buttonGroup">
+              <CopyButton text={messageThatWasSigned} />
+            </div>
           </div>
           <div>
             <h3>Hashed message (keccak256):</h3>
