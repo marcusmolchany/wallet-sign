@@ -1,6 +1,10 @@
 # wallet-sign
 
-## Getting Started with Create React App
+Easily sign any message using your Ethereum wallet
+
+Use the app here: https://marcusmolchany.github.io/wallet-sign
+
+## Development
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
