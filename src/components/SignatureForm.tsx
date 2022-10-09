@@ -84,11 +84,12 @@ export function SignatureForm() {
   return (
     <div className="signatureForm">
       {!isAddressConnected ? (
-        <div>Connect your account to sign this message</div>
+        <div>ℹ️ Connect your account to sign this message</div>
       ) : null}
       <h3>Name (optional)</h3>
       <input
         className="signatureForm_input"
+        disabled={!isAddressConnected}
         type="text"
         placeholder="Vitalik Buterin"
         onChange={onNameChange}
