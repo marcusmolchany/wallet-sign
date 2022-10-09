@@ -3,6 +3,8 @@ import { Header } from "./components/Header";
 import { SignatureForm } from "./components/SignatureForm";
 import "./App.css";
 
+window.Buffer = window.Buffer || require("buffer").Buffer;
+
 function App() {
   return (
     <Web3Container>
