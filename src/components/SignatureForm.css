@@ -1,5 +1,6 @@
 .signatureForm {
   max-width: 800px;
+  min-height: calc(100vh - 72px - 88px); /* 72px header 44 px footer */
   width: 100%;
   margin: 0 auto;
   padding: 16px;
