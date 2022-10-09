@@ -46,8 +46,8 @@ export function SignatureForm() {
   const [name, setName] = useState<string>("");
   const [message, setMessage] = useState<string>(INITIAL_MESSAGE);
   const [messageThatWasSigned, setMessageThatWasSigned] = useState<string>("");
-  const [hashedMessage, setHashedMessage] = useState<string>("");
   const [signedMessage, setSignedMessage] = useState<string>("");
+  const [hashedMessage, setHashedMessage] = useState<string>("");
 
   const preMessage = useMemo(
     () => getPremessage({ address, name }),
@@ -58,15 +58,15 @@ export function SignatureForm() {
     [address, name, message]
   );
   const combinedMessages = useMemo(
-    () => [messageThatWasSigned, hashedMessage, signedMessage].join("\n\n"),
-    [messageThatWasSigned, hashedMessage, signedMessage]
+    () => [messageThatWasSigned, signedMessage, hashedMessage].join("\n\n"),
+    [messageThatWasSigned, signedMessage, hashedMessage]
   );
   const isAddressConnected = !!address;
 
   const resetMessageState = () => {
     setMessageThatWasSigned("");
-    setHashedMessage("");
     setSignedMessage("");
+    setHashedMessage("");
   };
 
   const onNameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -89,10 +89,10 @@ export function SignatureForm() {
     try {
       const _signedMessage = await signMessageAsync({ message: messageToSign });
       setMessageThatWasSigned(messageToSign);
+      setSignedMessage(_signedMessage);
       setHashedMessage(
         ethersUtils.keccak256(ethersUtils.toUtf8Bytes(messageToSign))
       );
-      setSignedMessage(_signedMessage);
     } catch (e) {
       window.alert("Something went wrong...");
     }
@@ -152,24 +152,11 @@ export function SignatureForm() {
             </div>
           </div>
           <div>
-            <h3>Hashed message (keccak256):</h3>
-            <div className="signatureForm_code">
-              <code>{hashedMessage}</code>
-            </div>
-            <div className="signatureForm_buttonGroup">
-              <CopyButton text={hashedMessage} />
-              <TweetButton
-                text="Tweet your hashed message"
-                tweetText={hashedMessage}
-              />
-              <EmailButton
-                text="Email your hashed message"
-                emailText={hashedMessage}
-              />
-            </div>
-          </div>
-          <div>
             <h3>Signed message:</h3>
+            <p>
+              ℹ️ This is your wallet’s signature of the original message. This
+              proves that you signed the original message
+            </p>
             <div className="signatureForm_code">
               <code>{signedMessage}</code>
             </div>
@@ -186,7 +173,30 @@ export function SignatureForm() {
             </div>
           </div>
           <div>
-            <h3>Message, hashed message, and signed message:</h3>
+            <h3>Hashed unsigned message (keccak256):</h3>
+            <p>
+              ℹ️ This is the keccak256 hash of the original <i>unsigned</i>{" "}
+              message. This can be used to prove authenticity of the original
+              message text string. It <i>does not</i> prove that you signed the
+              original message.
+            </p>
+            <div className="signatureForm_code">
+              <code>{hashedMessage}</code>
+            </div>
+            <div className="signatureForm_buttonGroup">
+              <CopyButton text={hashedMessage} />
+              <TweetButton
+                text="Tweet your hashed message"
+                tweetText={hashedMessage}
+              />
+              <EmailButton
+                text="Email your hashed message"
+                emailText={hashedMessage}
+              />
+            </div>
+          </div>
+          <div>
+            <h3>Message, signed message, and hashed unsigned message:</h3>
             <details>
               <summary className="signatureForm_summary">Expand</summary>
               <div className="signatureForm_code">
