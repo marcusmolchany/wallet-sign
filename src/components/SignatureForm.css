@@ -7,6 +7,10 @@
   margin: 0 auto;
 }
 
+.signatureForm_connectMessage {
+  margin: 1rem 0;
+}
+
 .signatureForm_textarea {
   min-width: 300px;
   width: 100%;
