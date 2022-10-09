@@ -99,7 +99,7 @@ export function SignatureForm() {
       ></textarea>
       <h3>Message to sign</h3>
       <code>{messageToSign}</code>
-      <div className="signatureForm_buttonGroup">
+      <div className="signatureForm_buttonGroup flexEnd">
         <button disabled={!signedMessage} onClick={onResetClick}>
           Reset
         </button>
@@ -117,28 +117,34 @@ export function SignatureForm() {
           <div>
             <h3>Hashed message (keccak256):</h3>
             <p>{hashedMessage}</p>
-            <CopyButton text={hashedMessage} />
-            <TweetButton
-              text="Tweet your hashed message"
-              tweetText={hashedMessage}
-            />
+            <div className="signatureForm_buttonGroup">
+              <CopyButton text={hashedMessage} />
+              <TweetButton
+                text="Tweet your hashed message"
+                tweetText={hashedMessage}
+              />
+            </div>
           </div>
           <div>
             <h3>Signed message:</h3>
             <p>{signedMessage}</p>
-            <CopyButton text={signedMessage} />
-            <TweetButton
-              text="Tweet your signed message"
-              tweetText={signedMessage}
-            />
+            <div className="signatureForm_buttonGroup">
+              <CopyButton text={signedMessage} />
+              <TweetButton
+                text="Tweet your signed message"
+                tweetText={signedMessage}
+              />
+            </div>
           </div>
           <div>
             <h3>Message, hashed message, and signed message:</h3>
-            <CopyButton text={combinedMessages} />
-            <TweetButton
-              text="Tweet your message, hashed message, and signed message"
-              tweetText={combinedMessages}
-            />
+            <div className="signatureForm_buttonGroup">
+              <CopyButton text={combinedMessages} />
+              <TweetButton
+                text="Tweet your message, hashed message, and signed message"
+                tweetText={combinedMessages}
+              />
+            </div>
           </div>
         </div>
       ) : null}

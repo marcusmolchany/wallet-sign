@@ -17,6 +17,9 @@
 
 .signatureForm_buttonGroup {
   display: flex;
-  justify-content: flex-end;
   gap: 0.5rem;
+}
+
+.signatureForm_buttonGroup.flexEnd {
+  justify-content: flex-end;
 }
