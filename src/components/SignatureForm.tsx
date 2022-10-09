@@ -1,8 +1,10 @@
 import { utils as ethersUtils } from "ethers";
 import { ChangeEvent, useMemo, useState } from "react";
 import { useAccount, useSignMessage } from "wagmi";
+import { CopyButton } from "./CopyButton";
 import { SafeExternalLink } from "./SafeExternalLink";
 import "./SignatureForm.css";
+import { TweetButton } from "./TweetButton";
 
 const getPremessage = ({
   address,
@@ -16,11 +18,6 @@ const getPremessage = ({
       ? `(${address && name ? `${address} ${name}` : address ? address : name})`
       : "";
   return `I ${addressAndOrName}`;
-};
-
-const getTwitterShareLink = (strings: string[]): string => {
-  const twitterShareIntentBase = "https://twitter.com/intent/tweet";
-  return `${twitterShareIntentBase}?text=${encodeURI(strings.join("\n\n"))}`;
 };
 
 const INITIAL_MESSAGE =
@@ -41,6 +38,10 @@ export function SignatureForm() {
   const messageToSign = useMemo(
     () => `${preMessage} ${message}`,
     [address, name, message]
+  );
+  const combinedMessages = useMemo(
+    () => [messageToSign, hashedMessage, signedMessage].join("\n\n"),
+    [messageToSign, hashedMessage, signedMessage]
   );
   const isAddressConnected = !!address;
 
@@ -116,28 +117,28 @@ export function SignatureForm() {
           <div>
             <h3>Hashed message (keccak256):</h3>
             <p>{hashedMessage}</p>
-            <SafeExternalLink href={getTwitterShareLink([hashedMessage])}>
-              Tweet your hashed message
-            </SafeExternalLink>
+            <CopyButton text={hashedMessage} />
+            <TweetButton
+              text="Tweet your hashed message"
+              tweetText={hashedMessage}
+            />
           </div>
           <div>
             <h3>Signed message:</h3>
             <p>{signedMessage}</p>
-            <SafeExternalLink href={getTwitterShareLink([signedMessage])}>
-              Tweet your signed message
-            </SafeExternalLink>
+            <CopyButton text={signedMessage} />
+            <TweetButton
+              text="Tweet your signed message"
+              tweetText={signedMessage}
+            />
           </div>
           <div>
             <h3>Message, hashed message, and signed message:</h3>
-            <SafeExternalLink
-              href={getTwitterShareLink([
-                messageToSign,
-                hashedMessage,
-                signedMessage,
-              ])}
-            >
-              Tweet your message, hashed message, and signed message
-            </SafeExternalLink>
+            <CopyButton text={combinedMessages} />
+            <TweetButton
+              text="Tweet your message, hashed message, and signed message"
+              tweetText={combinedMessages}
+            />
           </div>
         </div>
       ) : null}
