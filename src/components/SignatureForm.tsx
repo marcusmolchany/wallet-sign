@@ -98,6 +98,7 @@ export function SignatureForm() {
       <textarea
         className="signatureForm_textarea"
         disabled={!isAddressConnected}
+        rows={3}
         onChange={onMessageChange}
         value={message}
       ></textarea>
