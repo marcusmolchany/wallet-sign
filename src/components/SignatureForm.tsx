@@ -28,6 +28,7 @@ export function SignatureForm() {
   const { signMessageAsync } = useSignMessage();
   const [name, setName] = useState<string>("");
   const [message, setMessage] = useState<string>(INITIAL_MESSAGE);
+  const [messageThatWasSigned, setMessageThatWasSigned] = useState<string>("");
   const [hashedMessage, setHashedMessage] = useState<string>("");
   const [signedMessage, setSignedMessage] = useState<string>("");
 
@@ -40,12 +41,13 @@ export function SignatureForm() {
     [address, name, message]
   );
   const combinedMessages = useMemo(
-    () => [messageToSign, hashedMessage, signedMessage].join("\n\n"),
-    [messageToSign, hashedMessage, signedMessage]
+    () => [messageThatWasSigned, hashedMessage, signedMessage].join("\n\n"),
+    [messageThatWasSigned, hashedMessage, signedMessage]
   );
   const isAddressConnected = !!address;
 
   const resetMessageState = () => {
+    setMessageThatWasSigned("");
     setHashedMessage("");
     setSignedMessage("");
   };
@@ -69,6 +71,7 @@ export function SignatureForm() {
 
     try {
       const _signedMessage = await signMessageAsync({ message: messageToSign });
+      setMessageThatWasSigned(messageToSign);
       setHashedMessage(
         ethersUtils.keccak256(ethersUtils.toUtf8Bytes(messageToSign))
       );
@@ -113,7 +116,7 @@ export function SignatureForm() {
           <div>
             <h3>Message:</h3>
             <div className="signatureForm_code">
-              <code>{messageToSign}</code>
+              <code>{messageThatWasSigned}</code>
             </div>
           </div>
           <div>
@@ -155,13 +158,7 @@ export function SignatureForm() {
             <details>
               <summary className="signatureForm_summary">Expand</summary>
               <div className="signatureForm_code">
-                <code>
-                  {messageToSign}
-                  {"\n"}
-                  {hashedMessage}
-                  {"\n"}
-                  {signedMessage}
-                </code>
+                <code>{combinedMessages}</code>
               </div>
             </details>
             <div className="signatureForm_buttonGroup">
