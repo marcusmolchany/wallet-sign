@@ -23,3 +23,17 @@
 .signatureForm_buttonGroup.flexEnd {
   justify-content: flex-end;
 }
+
+.signatureForm_hr {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.signatureForm_code {
+  word-break: break-word;
+}
+
+.signatureForm_code,
+.signatureForm_summary {
+  margin-bottom: 1rem;
+}

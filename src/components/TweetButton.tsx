@@ -10,6 +10,7 @@ type Props = {
   text?: string;
   tweetText: string;
 };
+
 export function TweetButton({
   text = "Tweet",
   tweetText,

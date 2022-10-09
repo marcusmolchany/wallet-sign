@@ -2,7 +2,7 @@ import { utils as ethersUtils } from "ethers";
 import { ChangeEvent, useMemo, useState } from "react";
 import { useAccount, useSignMessage } from "wagmi";
 import { CopyButton } from "./CopyButton";
-import { SafeExternalLink } from "./SafeExternalLink";
+import { EmailButton } from "./EmailButton";
 import "./SignatureForm.css";
 import { TweetButton } from "./TweetButton";
 
@@ -109,40 +109,70 @@ export function SignatureForm() {
       </div>
       {signedMessage ? (
         <div>
-          <hr />
+          <hr className="signatureForm_hr" />
           <div>
             <h3>Message:</h3>
-            <p>{messageToSign}</p>
+            <div className="signatureForm_code">
+              <code>{messageToSign}</code>
+            </div>
           </div>
           <div>
             <h3>Hashed message (keccak256):</h3>
-            <p>{hashedMessage}</p>
+            <div className="signatureForm_code">
+              <code>{hashedMessage}</code>
+            </div>
             <div className="signatureForm_buttonGroup">
               <CopyButton text={hashedMessage} />
               <TweetButton
                 text="Tweet your hashed message"
                 tweetText={hashedMessage}
               />
+              <EmailButton
+                text="Email your hashed message"
+                emailText={hashedMessage}
+              />
             </div>
           </div>
           <div>
             <h3>Signed message:</h3>
-            <p>{signedMessage}</p>
+            <div className="signatureForm_code">
+              <code>{signedMessage}</code>
+            </div>
             <div className="signatureForm_buttonGroup">
               <CopyButton text={signedMessage} />
               <TweetButton
                 text="Tweet your signed message"
                 tweetText={signedMessage}
               />
+              <EmailButton
+                text="Email your signed message"
+                emailText={signedMessage}
+              />
             </div>
           </div>
           <div>
             <h3>Message, hashed message, and signed message:</h3>
+            <details>
+              <summary className="signatureForm_summary">Expand</summary>
+              <div className="signatureForm_code">
+                <code>
+                  {messageToSign}
+                  {"\n"}
+                  {hashedMessage}
+                  {"\n"}
+                  {signedMessage}
+                </code>
+              </div>
+            </details>
             <div className="signatureForm_buttonGroup">
               <CopyButton text={combinedMessages} />
               <TweetButton
-                text="Tweet your message, hashed message, and signed message"
+                text="Tweet everything"
                 tweetText={combinedMessages}
+              />
+              <EmailButton
+                text="Email everything"
+                emailText={combinedMessages}
               />
             </div>
           </div>
