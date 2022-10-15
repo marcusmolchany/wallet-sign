@@ -1,21 +1,12 @@
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
-import { SignatureForm } from "./components/SignatureForm";
-import { Web3Container } from "./components/Web3Container";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/router";
 import "./App.css";
 
+// polyfill buffer
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 function App() {
-  return (
-    <Web3Container>
-      <main className="app_main">
-        <Header />
-        <SignatureForm />
-        <Footer />
-      </main>
-    </Web3Container>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
