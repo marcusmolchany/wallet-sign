@@ -1,3 +1,3 @@
 export function Verify() {
-  return <h1>Verify</h1>;
+  return <p>Coming soon</p>;
 }

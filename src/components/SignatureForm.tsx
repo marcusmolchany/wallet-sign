@@ -3,6 +3,7 @@ import { ChangeEvent, ReactElement, useMemo, useState } from "react";
 import { useAccount, useSignMessage } from "wagmi";
 import { CopyButton } from "./CopyButton";
 import { EmailButton } from "./EmailButton";
+import { PreWrap } from "./PreWrap";
 import "./SignatureForm.css";
 import { TweetButton } from "./TweetButton";
 
@@ -23,22 +24,25 @@ const getRandomName = (): string => {
 };
 const RANDOM_NAME = getRandomName();
 
-const getPremessage = ({
+const getPostmessage = ({
   address,
   name,
 }: {
   address?: string;
   name?: string;
 }): string => {
-  const addressAndOrName =
-    address || name
-      ? `(${address && name ? `${address} ${name}` : address ? address : name})`
-      : "";
-  return `I ${addressAndOrName}`;
+  let postMessage = "";
+  if (address) {
+    postMessage += `\n\naddress: ${address}`;
+  }
+  if (name) {
+    postMessage += `\nname: ${name}`;
+  }
+  return postMessage;
 };
 
 const INITIAL_MESSAGE =
-  "hereby decree that this message has been signed by me.\n\nSigned using Wallet Sign";
+  "I hereby decree that this message has been signed by me.\n\nSigned using Wallet Sign";
 
 type Props = {
   initialMessage?: string;
@@ -55,12 +59,12 @@ export function SignatureForm({
   const [signedMessage, setSignedMessage] = useState<string>("");
   const [hashedMessage, setHashedMessage] = useState<string>("");
 
-  const preMessage = useMemo(
-    () => getPremessage({ address, name }),
+  const postMessage = useMemo(
+    () => getPostmessage({ address, name }),
     [address, name]
   );
   const messageToSign = useMemo(
-    () => `${preMessage} ${message}`,
+    () => `${message}${postMessage}`,
     [address, name, message]
   );
   const combinedMessages = useMemo(
@@ -128,8 +132,8 @@ export function SignatureForm({
         value={message}
       ></textarea>
       <h3>Message to sign</h3>
-      <div className="signatureForm_code">
-        <code>{messageToSign}</code>
+      <div className="signatureForm_pre">
+        <PreWrap>{messageToSign}</PreWrap>
       </div>
       <div className="signatureForm_buttonGroup flexEnd">
         <button disabled={!signedMessage} onClick={onResetClick}>
@@ -150,8 +154,8 @@ export function SignatureForm({
           <hr className="signatureForm_hr" />
           <div>
             <h3>Message:</h3>
-            <div className="signatureForm_code">
-              <code>{messageThatWasSigned}</code>
+            <div className="signatureForm_pre">
+              <PreWrap>{messageThatWasSigned}</PreWrap>
             </div>
             <div className="signatureForm_buttonGroup">
               <CopyButton text={messageThatWasSigned} />
@@ -163,8 +167,8 @@ export function SignatureForm({
               ℹ️ This is your wallet’s signature of the original message. This
               proves that you signed the original message.
             </p>
-            <div className="signatureForm_code">
-              <code>{signedMessage}</code>
+            <div className="signatureForm_pre">
+              <PreWrap>{signedMessage}</PreWrap>
             </div>
             <div className="signatureForm_buttonGroup">
               <CopyButton text={signedMessage} />
@@ -186,8 +190,8 @@ export function SignatureForm({
               message text string. It <i>does not</i> prove that you signed the
               original message.
             </p>
-            <div className="signatureForm_code">
-              <code>{hashedMessage}</code>
+            <div className="signatureForm_pre">
+              <PreWrap>{hashedMessage}</PreWrap>
             </div>
             <div className="signatureForm_buttonGroup">
               <CopyButton text={hashedMessage} />
@@ -205,8 +209,8 @@ export function SignatureForm({
             <h3>Message, signed message, and hashed unsigned message:</h3>
             <details>
               <summary className="signatureForm_summary">Expand</summary>
-              <div className="signatureForm_code">
-                <code>{combinedMessages}</code>
+              <div className="signatureForm_pre">
+                <PreWrap>{combinedMessages}</PreWrap>
               </div>
             </details>
             <div className="signatureForm_buttonGroup">

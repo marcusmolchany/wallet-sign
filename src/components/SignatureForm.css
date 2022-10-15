@@ -35,11 +35,12 @@
   margin-top: 2rem;
 }
 
-.signatureForm_code {
+.signatureForm_pre {
   word-break: break-all;
+  word-wrap: break-word;
 }
 
-.signatureForm_code,
+.signatureForm_pre,
 .signatureForm_summary {
   margin-bottom: 1rem;
 }
