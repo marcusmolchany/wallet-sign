@@ -9,12 +9,12 @@ export function Header() {
         <NavLink to="/" end>
           <h2 className="header_h2">✍️ Wallet Sign</h2>
         </NavLink>
-        <NavLink to="/" end>
+        {/*<NavLink to="/" end>
           Sign
         </NavLink>
         <NavLink to="verify" end>
           Verify
-        </NavLink>
+        </NavLink>*/}
       </div>
       <ConnectButton chainStatus="none" />
     </header>
