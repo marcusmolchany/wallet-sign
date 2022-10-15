@@ -16,5 +16,6 @@ export const router = createBrowserRouter(
         <Route path="verify" element={<Verify />} />
       </Route>
     </Route>
-  )
+  ),
+  { basename: "/wallet-sign" }
 );
