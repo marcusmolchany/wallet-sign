@@ -19,6 +19,7 @@
   text-decoration: none;
 }
 
+.header__links > *.active:not(:first-child),
 .header__links > *:hover {
   text-decoration: underline;
 }
