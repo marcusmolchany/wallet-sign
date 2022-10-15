@@ -1,5 +1,5 @@
 import { SignatureForm } from "../components/SignatureForm";
 
-export function Index() {
+export function Sign() {
   return <SignatureForm />;
 }

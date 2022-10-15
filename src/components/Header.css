@@ -7,3 +7,18 @@
 .header_h2 {
   margin: 0;
 }
+
+.header__links {
+  align-items: baseline;
+  display: flex;
+}
+
+.header__links > * {
+  color: var(--text-color);
+  margin-right: 8px;
+  text-decoration: none;
+}
+
+.header__links > *:hover {
+  text-decoration: underline;
+}
