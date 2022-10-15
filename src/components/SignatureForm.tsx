@@ -41,6 +41,12 @@ const getPostmessage = ({
   return postMessage;
 };
 
+const getLinkToMessage = (message: string): string => {
+  return `${window.location.origin}${
+    window.location.pathname
+  }?message=${encodeURI(message)}`;
+};
+
 const INITIAL_MESSAGE =
   "I hereby decree that this message has been signed by me.\n\nSigned using Wallet Sign";
 
@@ -131,6 +137,10 @@ export function SignatureForm({
         onChange={onMessageChange}
         value={message}
       ></textarea>
+      <div className="signatureForm_buttonGroup flexEnd">
+        <span style={{ marginRight: "0.25rem" }}>Copy link to message</span>
+        <CopyButton text={getLinkToMessage(message)} />
+      </div>
       <h3>Message to sign</h3>
       <div className="signatureForm_pre">
         <PreWrap>{messageToSign}</PreWrap>
