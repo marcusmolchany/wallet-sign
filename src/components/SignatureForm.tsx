@@ -1,5 +1,5 @@
 import { utils as ethersUtils } from "ethers";
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, ReactElement, useMemo, useState } from "react";
 import { useAccount, useSignMessage } from "wagmi";
 import { CopyButton } from "./CopyButton";
 import { EmailButton } from "./EmailButton";
@@ -40,11 +40,17 @@ const getPremessage = ({
 const INITIAL_MESSAGE =
   "hereby decree that this message has been signed by me.\n\nSigned using Wallet Sign";
 
-export function SignatureForm() {
+type Props = {
+  initialMessage?: string;
+};
+
+export function SignatureForm({
+  initialMessage = INITIAL_MESSAGE,
+}: Props): ReactElement {
   const { address } = useAccount();
   const { signMessageAsync } = useSignMessage();
   const [name, setName] = useState<string>("");
-  const [message, setMessage] = useState<string>(INITIAL_MESSAGE);
+  const [message, setMessage] = useState<string>(initialMessage);
   const [messageThatWasSigned, setMessageThatWasSigned] = useState<string>("");
   const [signedMessage, setSignedMessage] = useState<string>("");
   const [hashedMessage, setHashedMessage] = useState<string>("");
