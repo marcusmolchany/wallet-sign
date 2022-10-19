@@ -64,14 +64,16 @@ export function SignatureForm({
   const [messageThatWasSigned, setMessageThatWasSigned] = useState<string>("");
   const [signedMessage, setSignedMessage] = useState<string>("");
   const [hashedMessage, setHashedMessage] = useState<string>("");
+  const [isSignatureBlockEnabled, setSignatureBlockEnabled] =
+    useState<boolean>(true);
 
   const postMessage = useMemo(
     () => getPostmessage({ address, name }),
     [address, name]
   );
   const messageToSign = useMemo(
-    () => `${message}${postMessage}`,
-    [address, name, message]
+    () => `${message}${isSignatureBlockEnabled ? postMessage : ""}`,
+    [isSignatureBlockEnabled, address, name, message]
   );
   const combinedMessages = useMemo(
     () => [messageThatWasSigned, signedMessage, hashedMessage].join("\n\n"),
@@ -93,6 +95,11 @@ export function SignatureForm({
   const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const value: string = e.target.value;
     setMessage(value.trimStart());
+  };
+
+  const onSignatureBlockEnabledToggle = (e: ChangeEvent<HTMLInputElement>) => {
+    const value: boolean = e.target.checked;
+    setSignatureBlockEnabled(value);
   };
 
   const onResetClick = () => {
@@ -137,6 +144,17 @@ export function SignatureForm({
         onChange={onMessageChange}
         value={message}
       ></textarea>
+      <div>
+        <label htmlFor="checkbox-signatureBlock">
+          Include signature block:
+        </label>
+        <input
+          id="checkbox-signatureBlock"
+          type="checkbox"
+          checked={isSignatureBlockEnabled}
+          onChange={onSignatureBlockEnabledToggle}
+        />
+      </div>
       <div className="signatureForm_buttonGroup flexEnd">
         <span style={{ marginRight: "0.25rem" }}>Copy link to message</span>
         <CopyButton text={getLinkToMessage(message)} />
