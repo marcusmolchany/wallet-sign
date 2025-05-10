@@ -1,4 +1,4 @@
-import { utils as ethersUtils } from "ethers";
+import { keccak256, toBytes } from "viem";
 import { ChangeEvent, ReactElement, useMemo, useState } from "react";
 import { useAccount, useSignMessage } from "wagmi";
 import { CopyButton } from "./CopyButton";
@@ -113,9 +113,7 @@ export function SignatureForm({
       const _signedMessage = await signMessageAsync({ message: messageToSign });
       setMessageThatWasSigned(messageToSign);
       setSignedMessage(_signedMessage);
-      setHashedMessage(
-        ethersUtils.keccak256(ethersUtils.toUtf8Bytes(messageToSign))
-      );
+      setHashedMessage(keccak256(toBytes(messageToSign)));
     } catch (e) {
       window.alert("Something went wrong...");
     }
@@ -192,7 +190,7 @@ export function SignatureForm({
           <div>
             <h3>Signed message:</h3>
             <p>
-              ℹ️ This is your wallet’s signature of the original message. This
+              ℹ️ This is your wallet's signature of the original message. This
               proves that you signed the original message.
             </p>
             <div className="signatureForm_pre">
