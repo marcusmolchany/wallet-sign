@@ -1,6 +1,6 @@
 {
   "name": "wallet-sign",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "private": true,
   "repository": {
     "type": "git",
@@ -46,6 +46,8 @@
   "browserslist": {
     "production": [
       ">0.2%",
+      "not ie <= 99",
+      "not android <= 4.4.4",
       "not dead",
       "not op_mini all"
     ],
