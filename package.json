@@ -8,6 +8,8 @@
   },
   "homepage": "https://marcusmolchany.github.io/wallet-sign",
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.2.4",
+    "@tanstack/react-query": "^5.75.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -23,6 +25,8 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "typescript": "^4.8.4",
+    "viem": "2.x",
+    "wagmi": "^2.15.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
