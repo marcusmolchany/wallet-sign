@@ -1,26 +1,17 @@
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
-// import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
+import { type ReactElement } from "react";
+import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { WagmiProvider } from "wagmi";
+import { mainnet, polygon, optimism, arbitrum, base } from "wagmi/chains";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import "@rainbow-me/rainbowkit/styles.css";
-import { ReactElement } from "react";
 
-const { chains, provider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
-  // [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
-  [publicProvider()]
-);
-
-const { connectors } = getDefaultWallets({
-  appName: "Wallet Sign",
-  chains,
+const config = getDefaultConfig({
+  appName: "WalletSign",
+  projectId: "cf817cc7e3197441a6c2f4e61d96d01c",
+  chains: [mainnet, polygon, optimism, arbitrum, base],
 });
 
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors,
-  provider,
-});
+const queryClient = new QueryClient();
 
 type Props = {
   children: React.ReactNode;
@@ -28,8 +19,10 @@ type Props = {
 
 export function Web3Container({ children }: Props): ReactElement {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>{children}</RainbowKitProvider>
-    </WagmiConfig>
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider>{children}</RainbowKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
   );
 }
